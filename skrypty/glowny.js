@@ -2,12 +2,14 @@
 import {ladujGrafike} from './ladujGrafike.js';
 import {Wektor} from './Wektor.js';
 import {Prostokat} from './Prostokat.js';
+import {Chmurka} from './Chmurka.js';
+import {losowaZmiennoprzecinkowa as losowa} from './losowa.js';
 
 /**
  * Grafiki do gry
  * @type {{flappyBird: Image, chmurka: Image}}
  */
-const GRAFIKI = {
+const grafiki = {
     flappyBird: null,
     chmurka: null,
 };
@@ -18,7 +20,7 @@ const GRAFIKI = {
     ladujGrafike('grafiki/flappyBird.png'),
     new Promise(r => window.addEventListener('load', r))
 ]).then(([chmurka, flappyBird, ...reszta]) => {
-    Object.assign(GRAFIKI, {chmurka, flappyBird});
+    Object.assign(grafiki, {chmurka, flappyBird});
     setup();
 }))();
 
@@ -38,6 +40,12 @@ let ctx;
 let tloGry;
 
 /**
+ * Tablica chmurek
+ * @type {Chmurka[]}
+ */
+const chmurki = [];
+
+/**
  * Główna funkcja
  */
 function setup() {
@@ -50,8 +58,8 @@ function setup() {
     document.body.appendChild(canvas);
 
     // Tworze tło
-    tloGry = new Prostokat(new Wektor, canvas.width, canvas.height);
-    tloGry.kolor = '#87ceeb';
+    tloGry = new Prostokat(new Wektor, canvas.width, canvas.height)
+        .setKolor('#87ceeb');
 
     // Uruchonienie animacji
     animate();
@@ -65,6 +73,29 @@ function animate() {
 
     // Rysuje tło
     tloGry.rysuj(ctx);
+
+    // Jeżeli mniej niż 4 chmurki to losuje
+    while (chmurki.length < 5) chmurki.push(new Chmurka(
+        new Wektor(
+            losowa(canvas.width, canvas.width * 2),
+            losowa(-grafiki.chmurka.height / 2, canvas.height / 10)
+        ),
+        grafiki.chmurka.width,
+        grafiki.chmurka.height,
+        losowa(-3, -0.5)
+    ).setGrafika(grafiki.chmurka));
+
+    // Aktualizuje pozycje chmurek
+    chmurki.forEach(v => v.aktualizuj());
+
+    // Rysuje chmurki
+    chmurki.forEach(v => v.rysuj(ctx));
+
+    // Chmurki po a ekranem są wywalane
+    for (let i = 0; i < chmurki.length; i++) if (chmurki[i].pozycja.x + chmurki[i].szerokosc < 0) {
+        chmurki.splice(i, 1);
+        i--;
+    }
 
     // Ponowne załadowanie animacji
     requestAnimationFrame(animate);

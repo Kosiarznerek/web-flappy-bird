@@ -57,10 +57,12 @@ export class Prostokat {
     /**
      * Ustawia kolor prostokata
      * @param {string | null} kolor
+     * @return {Prostokat}
      */
-    set kolor(kolor) {
+    setKolor(kolor) {
         this._grafika = null;
         this._kolor = kolor;
+        return this;
     }
 
     /**
@@ -74,10 +76,12 @@ export class Prostokat {
     /**
      * Ustawia grafike prostokata
      * @param {Image | null} grafika
+     * @return {Prostokat}
      */
-    set grafika(grafika) {
+    setGrafika(grafika) {
         this._kolor = null;
         this._grafika = grafika;
+        return this;
     }
 
     /**
@@ -91,12 +95,14 @@ export class Prostokat {
     /**
      * Ustawia kąt obrozu
      * @param {number} v
+     * @return {Prostokat}
      */
-    set katObrotu(v) {
+    setKatObrotu(v) {
         if (Math.abs(Math.abs(v) - Math.PI) < 0.0001) {
             v = 0;
         }
         this._katObrotu = v;
+        return this;
     }
 
     /**
@@ -124,7 +130,7 @@ export class Prostokat {
             ctx.fillStyle = this._kolor;
             ctx.fill();
         } else if (this._grafika instanceof Image) { // Rysowanie grafika
-            ctx.drawImage(this._grafika, -this._grafika.width / 2, -this._grafika.width / 2);
+            ctx.drawImage(this._grafika, -this.szerokosc / 2, -this.wysokosc / 2, this.szerokosc, this.wysokosc);
         } else { // Bląd
             console.warn('Próba namalowania prostokątu bez grafiki i koloru');
         }

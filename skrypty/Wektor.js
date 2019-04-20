@@ -20,14 +20,14 @@ export class Wektor {
 
     /**
      * Dodaje wektory
-     * @param {Wektor} wektor
+     * @param {Wektor | number} v
      * @return {Wektor}
      */
-    dodaj(wektor) {
-        return new Wektor(
-            this.x + wektor.x,
-            this.y + wektor.y
-        )
+    dodaj(v) {
+        if (!(v instanceof Wektor)) v = new Wektor(v, v);
+        this.x += v.x;
+        this.y += v.y;
+        return this;
     }
 
     /**
@@ -36,10 +36,9 @@ export class Wektor {
      * @return {Wektor}
      */
     odejmij(wektor) {
-        return new Wektor(
-            this.x - wektor.x,
-            this.y - wektor.y
-        )
+        this.x -= wektor.x;
+        this.y -= wektor.y;
+        return this;
     }
 
 }

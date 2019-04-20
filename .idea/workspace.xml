@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b41d5d6-ff48-439d-8a2c-48a3d1c5d8b0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/skrypty/ladujGrafike.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/skrypty/Chmurka.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/skrypty/losowa.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grafiki/flappyBird.png" beforeDir="false" afterPath="$PROJECT_DIR$/grafiki/flappyBird.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafiki/chmurka.png" beforeDir="false" afterPath="$PROJECT_DIR$/grafiki/chmurka.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/skrypty/Prostokat.js" beforeDir="false" afterPath="$PROJECT_DIR$/skrypty/Prostokat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/skrypty/Wektor.js" beforeDir="false" afterPath="$PROJECT_DIR$/skrypty/Wektor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/skrypty/glowny.js" beforeDir="false" afterPath="$PROJECT_DIR$/skrypty/glowny.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,11 +30,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/skrypty/glowny.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="66" column="22" selection-start-line="66" selection-start-column="22" selection-end-line="66" selection-end-column="22" />
+            <state relative-caret-position="255">
+              <caret line="57" column="38" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
               <folding>
-                <element signature="e#11#20#0" expanded="true" />
+                <element signature="e#11#58#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/skrypty/Chmurka.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -39,8 +51,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/skrypty/Prostokat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="116" column="19" selection-start-line="116" selection-start-column="19" selection-end-line="116" selection-end-column="19" />
+            <state relative-caret-position="459">
+              <caret line="36" column="19" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/skrypty/losowa.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -48,8 +69,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/skrypty/Wektor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+            <state relative-caret-position="138">
+              <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -75,9 +96,11 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/style/glowny.css" />
         <option value="$PROJECT_DIR$/skrypty/ObiektCanvas.js" />
-        <option value="$PROJECT_DIR$/skrypty/Wektor.js" />
-        <option value="$PROJECT_DIR$/skrypty/Prostokat.js" />
         <option value="$PROJECT_DIR$/skrypty/ladujGrafike.js" />
+        <option value="$PROJECT_DIR$/skrypty/losowa.js" />
+        <option value="$PROJECT_DIR$/skrypty/Prostokat.js" />
+        <option value="$PROJECT_DIR$/skrypty/Wektor.js" />
+        <option value="$PROJECT_DIR$/skrypty/Chmurka.js" />
         <option value="$PROJECT_DIR$/skrypty/glowny.js" />
       </list>
     </option>
@@ -158,12 +181,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1555777474173</updated>
-      <workItem from="1555777481121" duration="7805000" />
+      <workItem from="1555777481121" duration="11420000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7805000" />
+    <option name="totallyTimeSpent" value="11420000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -223,20 +246,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/skrypty/Wektor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skrypty/Prostokat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="116" column="19" selection-start-line="116" selection-start-column="19" selection-end-line="116" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/skrypty/ladujGrafike.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -244,12 +253,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/skrypty/Prostokat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="36" column="19" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skrypty/Wektor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skrypty/losowa.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skrypty/Chmurka.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/skrypty/glowny.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="66" column="22" selection-start-line="66" selection-start-column="22" selection-end-line="66" selection-end-column="22" />
+        <state relative-caret-position="255">
+          <caret line="57" column="38" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
           <folding>
-            <element signature="e#11#20#0" expanded="true" />
+            <element signature="e#11#58#0" expanded="true" />
           </folding>
         </state>
       </provider>
