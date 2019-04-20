@@ -1,5 +1,5 @@
 // Importy
-import {ladujGrafike} from './ladujGrafike.js';
+import {ladujGrafike, ladujDzwiek} from './laduj.js';
 import {Wektor} from './Wektor.js';
 import {Prostokat} from './Prostokat.js';
 import {Chmurka} from './Chmurka.js';
@@ -15,13 +15,27 @@ const grafiki = {
     chmurka: null,
 };
 
+/**
+ * Dźwięki z gry
+ * @type {{punkt: Audio, uderzenie: Audio, skrzydla: Audio}}
+ */
+const dzwieki = {
+    punkt: null,
+    skrzydla: null,
+    uderzenie: null
+};
+
 // Laduje grafiki i czekam na załadwanie strony
 (async () => await Promise.all([
     ladujGrafike('grafiki/chmurka.png'),
     ladujGrafike('grafiki/flappyBird.png'),
-    new Promise(r => window.addEventListener('load', r))
-]).then(([chmurka, flappyBird, ...reszta]) => {
+    new Promise(r => window.addEventListener('load', r)),
+    ladujDzwiek('dźwieki/punkt.wav'),
+    ladujDzwiek('dźwieki/skrzydla.wav'),
+    ladujDzwiek('dźwieki/uderzenie.wav'),
+]).then(([chmurka, flappyBird, load, punkt, skrzydla, uderzenie]) => {
     Object.assign(grafiki, {chmurka, flappyBird});
+    Object.assign(dzwieki, {punkt, skrzydla, uderzenie});
     setup();
 }))();
 
@@ -55,6 +69,8 @@ let flappyBird;
 window.addEventListener('keydown', e => {
     if (!flappyBird || e.key !== ' ') return;
     flappyBird.podskocz();
+    dzwieki.skrzydla.currentTime = 0;
+    dzwieki.skrzydla.play();
 });
 
 /**
