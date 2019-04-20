@@ -5,6 +5,7 @@ import {Prostokat} from './Prostokat.js';
 import {Chmurka} from './Chmurka.js';
 import {FlappyBird} from './FlappyBird.js';
 import {losowaZmiennoprzecinkowa as losowa} from './losowa.js';
+import {aktualizujRozmiar} from './dostosujRozmiar.js';
 
 /**
  * Grafiki do gry
@@ -73,6 +74,16 @@ window.addEventListener('keydown', e => {
     dzwieki.skrzydla.play();
 });
 
+// Zmiana rozmiaru
+window.addEventListener('resize', () => {
+    if (!canvas) return;
+    aktualizujRozmiar(
+        canvas,
+        new Wektor(1366, 657),
+        new Wektor(window.innerWidth, window.outerHeight)
+    );
+});
+
 /**
  * Główna funkcja
  */
@@ -80,8 +91,13 @@ function setup() {
 
     // Tworze canvas na cały ekran
     canvas = document.createElement('canvas');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = 1366;
+    canvas.height = 657;
+    aktualizujRozmiar(
+        canvas,
+        new Wektor(1366, 657),
+        new Wektor(window.innerWidth, window.outerHeight)
+    );
     ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = false;
     document.body.appendChild(canvas);
