@@ -3,6 +3,7 @@ import {ladujGrafike} from './ladujGrafike.js';
 import {Wektor} from './Wektor.js';
 import {Prostokat} from './Prostokat.js';
 import {Chmurka} from './Chmurka.js';
+import {FlappyBird} from './FlappyBird.js';
 import {losowaZmiennoprzecinkowa as losowa} from './losowa.js';
 
 /**
@@ -46,6 +47,17 @@ let tloGry;
 const chmurki = [];
 
 /**
+ * @type {FlappyBird}
+ */
+let flappyBird;
+
+// Po wciśnieciu spacji
+window.addEventListener('keydown', e => {
+    if (!flappyBird || e.key !== ' ') return;
+    flappyBird.podskocz();
+});
+
+/**
  * Główna funkcja
  */
 function setup() {
@@ -55,11 +67,22 @@ function setup() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
     document.body.appendChild(canvas);
 
     // Tworze tło
     tloGry = new Prostokat(new Wektor, canvas.width, canvas.height)
         .setKolor('#87ceeb');
+
+    // Tworze gracza
+    flappyBird = new FlappyBird(
+        new Wektor(
+            canvas.width / 2 - grafiki.flappyBird.width / 2,
+            canvas.height / 2 - grafiki.flappyBird.height / 2
+        ),
+        grafiki.flappyBird.width,
+        grafiki.flappyBird.height
+    ).setGrafika(grafiki.flappyBird);
 
     // Uruchonienie animacji
     animate();
@@ -78,7 +101,7 @@ function animate() {
     while (chmurki.length < 5) chmurki.push(new Chmurka(
         new Wektor(
             losowa(canvas.width, canvas.width * 2),
-            losowa(-grafiki.chmurka.height / 2, canvas.height / 10)
+            losowa(-grafiki.chmurka.height / 2, canvas.height / 5)
         ),
         grafiki.chmurka.width,
         grafiki.chmurka.height,
@@ -96,6 +119,12 @@ function animate() {
         chmurki.splice(i, 1);
         i--;
     }
+
+    // Rysuje gracza
+    flappyBird.rysuj(ctx);
+
+    // Aktualizuje pozycje gracza
+    flappyBird.aktualizuj();
 
     // Ponowne załadowanie animacji
     requestAnimationFrame(animate);
