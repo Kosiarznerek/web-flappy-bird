@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b41d5d6-ff48-439d-8a2c-48a3d1c5d8b0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/skrypty/FlappyBird.js" beforeDir="false" afterPath="$PROJECT_DIR$/skrypty/FlappyBird.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/skrypty/Pipe.js" beforeDir="false" afterPath="$PROJECT_DIR$/skrypty/Pipe.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/skrypty/Prostokat.js" beforeDir="false" afterPath="$PROJECT_DIR$/skrypty/Prostokat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/skrypty/glowny.js" beforeDir="false" afterPath="$PROJECT_DIR$/skrypty/glowny.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +21,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/skrypty/glowny.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="189">
@@ -33,6 +29,18 @@
               <folding>
                 <element signature="e#11#64#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="17">
+                <caret line="1" column="2" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="2" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -131,6 +139,7 @@
         <option value="$PROJECT_DIR$/skrypty/Prostokat.js" />
         <option value="$PROJECT_DIR$/skrypty/FlappyBird.js" />
         <option value="$PROJECT_DIR$/skrypty/glowny.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -153,16 +162,6 @@
             <path>
               <item name="web-flappy-bird" type="b2602c69:ProjectViewProjectNode" />
               <item name="web-flappy-bird" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web-flappy-bird" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web-flappy-bird" type="462c0819:PsiDirectoryNode" />
-              <item name="skrypty" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web-flappy-bird" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web-flappy-bird" type="462c0819:PsiDirectoryNode" />
-              <item name="style" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -206,18 +205,18 @@
       <option name="presentableId" value="Default" />
       <updated>1555777474173</updated>
       <workItem from="1555777481121" duration="17746000" />
-      <workItem from="1555846670234" duration="11063000" />
+      <workItem from="1555846670234" duration="11371000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28809000" />
+    <option name="totallyTimeSpent" value="29117000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -342,6 +341,16 @@
           <folding>
             <element signature="e#11#64#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="17">
+            <caret line="1" column="2" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="2" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
