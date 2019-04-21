@@ -151,4 +151,13 @@ export class Pipe {
         return this._gorny.pozycja.x + this.szerokosc + this.obramowanieSzerokosc < p.pozycja.x;
     }
 
+    /**
+     * Sprawdza czy pipe został oderzony
+     * @param {Prostokat} p
+     * @return {boolean}
+     */
+    uderzony(p) {
+        return this._pipy.filter(v => v.nachodziNa(p)).length > 0;
+    }
+
 }

@@ -52,12 +52,19 @@ export class FlappyBird extends Prostokat {
          */
         this.punkty = 0;
 
+        /**
+         * Czy flappy jest martwy?
+         * @type {boolean}
+         */
+        this.martwy = false;
+
     }
 
     /**
      * Ptaszek podskakuje
      */
     podskocz() {
+        if (this.martwy) return;
         const nowa = this._sila.klonuj().dodaj(new Wektor(0, this._silaWzbicia)).y;
         this._sila.y = Math.max(this._maxSilaWzbicia, nowa);
     }
@@ -66,6 +73,9 @@ export class FlappyBird extends Prostokat {
      * Aktualizuje pozycje
      */
     aktualizuj() {
+
+        // Jeżeli matrwy to nic nie robie
+        if (this.martwy) return;
 
         // Grawitacja ściaga na doł
         const nowa = this._sila.klonuj().dodaj(new Wektor(0, this._grawitacja));

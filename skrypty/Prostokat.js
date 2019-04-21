@@ -199,4 +199,16 @@ export class Prostokat {
 
     }
 
+    /**
+     * Sprawdza czy prostokat nachodzi na drugi
+     * @param {Prostokat} p
+     * @return {boolean}
+     */
+    nachodziNa(p) {
+        return (this.pozycja.x < p.pozycja.x + p.szerokosc &&
+            this.pozycja.x + this.szerokosc > p.pozycja.x &&
+            this.pozycja.y < p.pozycja.y + p.wysokosc &&
+            this.pozycja.y + this.wysokosc > p.pozycja.y)
+    }
+
 }

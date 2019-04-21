@@ -77,23 +77,66 @@ let flappyBird;
  */
 const pipy = [];
 
+/**
+ * Czy gra została uruchomiona
+ * @type {boolean}
+ */
+let graUruchomiona = false;
+
 // Po wciśnieciu spacji
 window.addEventListener('keydown', e => {
     if (e.key !== ' ') return;
-    flappyBirdPodskocz();
+    spacjaNacisnieta();
 });
 
 // Po tapie
-window.addEventListener('touchstart', flappyBirdPodskocz);
+window.addEventListener('touchstart', spacjaNacisnieta);
 
 /**
- * Flappy podskakuje
+ * Flappy podskakuje | uruchamia gre
  */
-function flappyBirdPodskocz() {
+function spacjaNacisnieta() {
     if (!flappyBird) return;
-    flappyBird.podskocz();
-    dzwieki.skrzydla.currentTime = 0;
-    dzwieki.skrzydla.play();
+
+    //
+    // Pierwsze uruchomienie
+    //
+    if (!graUruchomiona) {
+        graUruchomiona = true;
+        animate();
+    }
+
+
+    //
+    // Podskok
+    //
+    if (!flappyBird.martwy) {
+        flappyBird.podskocz();
+        dzwieki.skrzydla.currentTime = 0;
+        dzwieki.skrzydla.play();
+        return
+    }
+
+    //
+    // Reset gry
+    //
+
+    // Tworze gracza
+    flappyBird = new FlappyBird(
+        new Wektor(
+            canvas.width / 2 - grafiki.flappyBird.width / 2,
+            canvas.height / 2 - grafiki.flappyBird.height / 2
+        ),
+        grafiki.flappyBird.width,
+        grafiki.flappyBird.height
+    ).setGrafika(grafiki.flappyBird);
+
+    // Czyszcze pipy
+    while (pipy.length > 0) pipy.pop();
+
+    // Uruchamiam animacje
+    animate();
+
 }
 
 // Zmiana rozmiaru
@@ -241,6 +284,21 @@ function animate() {
     ctx.strokeText(flappyBird.punkty.toString().padStart(3, '0'), canvas.width / 2, 80);
     ctx.fill();
     ctx.stroke();
+
+    // Jeżeli pipe został uderzony lub gracz uderzył w ściene (góra | dół)
+    if (
+        pipy.filter(v => v.uderzony(flappyBird)).length > 0 ||
+        flappyBird.pozycja.y + flappyBird.wysokosc > canvas.height ||
+        flappyBird.pozycja.y < 0
+    ) {
+        dzwieki.uderzenie.currentTime = 0;
+        dzwieki.uderzenie.play();
+        flappyBird.martwy = true;
+        return;
+    }
+
+    // Jeżeli gra nie uruchomiona
+    if (!graUruchomiona) return;
 
     // Ponowne załadowanie animacji
     requestAnimationFrame(animate);
