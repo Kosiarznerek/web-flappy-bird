@@ -4,16 +4,18 @@ import {Wektor} from './Wektor.js';
 import {Prostokat} from './Prostokat.js';
 import {Chmurka} from './Chmurka.js';
 import {FlappyBird} from './FlappyBird.js';
+import {Pipe} from './Pipe.js'
 import {losowaZmiennoprzecinkowa as losowa} from './losowa.js';
 import {aktualizujRozmiar} from './dostosujRozmiar.js';
 
 /**
  * Grafiki do gry
- * @type {{flappyBird: Image, chmurka: Image}}
+ * @type {{flappyBird: Image, chmurka: Image, pipe: Image}}
  */
 const grafiki = {
     flappyBird: null,
     chmurka: null,
+    pipe: null
 };
 
 /**
@@ -30,12 +32,13 @@ const dzwieki = {
 (async () => await Promise.all([
     ladujGrafike('grafiki/chmurka.png'),
     ladujGrafike('grafiki/flappyBird.png'),
+    ladujGrafike('grafiki/pipe.png'),
     new Promise(r => window.addEventListener('load', r)),
     ladujDzwiek('dźwieki/punkt.wav'),
     ladujDzwiek('dźwieki/skrzydla.wav'),
     ladujDzwiek('dźwieki/uderzenie.wav'),
-]).then(([chmurka, flappyBird, load, punkt, skrzydla, uderzenie]) => {
-    Object.assign(grafiki, {chmurka, flappyBird});
+]).then(([chmurka, flappyBird, pipe, load, punkt, skrzydla, uderzenie]) => {
+    Object.assign(grafiki, {chmurka, flappyBird, pipe});
     Object.assign(dzwieki, {punkt, skrzydla, uderzenie});
     setup();
 }))();
@@ -57,6 +60,7 @@ let tloGry;
 
 /**
  * Tablica chmurek
+ * @readonly
  * @type {Chmurka[]}
  */
 const chmurki = [];
@@ -65,6 +69,13 @@ const chmurki = [];
  * @type {FlappyBird}
  */
 let flappyBird;
+
+/**
+ * Tablica pipów
+ * @readonly
+ * @type {Pipe[]}
+ */
+const pipy = [];
 
 // Po wciśnieciu spacji
 window.addEventListener('keydown', e => {
@@ -106,6 +117,17 @@ function setup() {
     tloGry = new Prostokat(new Wektor, canvas.width, canvas.height)
         .setKolor('#87ceeb');
 
+    // Tworze losowe chmurki na ekranie
+    while (chmurki.length < 5) chmurki.push(new Chmurka(
+        new Wektor(
+            losowa(-grafiki.chmurka.width / 2, canvas.width - grafiki.chmurka.width / 2),
+            losowa(-grafiki.chmurka.height / 2, canvas.height / 5)
+        ),
+        grafiki.chmurka.width,
+        grafiki.chmurka.height,
+        losowa(-3, -0.5)
+    ).setGrafika(grafiki.chmurka));
+
     // Tworze gracza
     flappyBird = new FlappyBird(
         new Wektor(
@@ -115,6 +137,17 @@ function setup() {
         grafiki.flappyBird.width,
         grafiki.flappyBird.height
     ).setGrafika(grafiki.flappyBird);
+
+    // Tworze pipy
+    pipy.push(new Pipe(
+        new Wektor(100, 0),
+        flappyBird.wysokosc * 2.5,
+        grafiki.pipe.width,
+        canvas.height,
+        flappyBird.wysokosc,
+        0,
+        grafiki.pipe
+    ).setObramowanie(15, '#000000'));
 
     // Uruchonienie animacji
     animate();
@@ -157,6 +190,12 @@ function animate() {
 
     // Aktualizuje pozycje gracza
     flappyBird.aktualizuj();
+
+    // Aktualizuje pozycuje pipów
+    pipy.forEach(v => v.aktualizuj());
+
+    // Rysuje pipy
+    pipy.forEach(v => v.rysuj(ctx));
 
     // Ponowne załadowanie animacji
     requestAnimationFrame(animate);

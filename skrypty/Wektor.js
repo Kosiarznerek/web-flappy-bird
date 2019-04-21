@@ -6,8 +6,17 @@ export class Wektor {
      * @param {number} y
      */
     constructor(x = 0, y = 0) {
+
+        /**
+         * @type {number}
+         */
         this.x = x;
+
+        /**
+         * @type {number}
+         */
         this.y = y;
+
     }
 
     /**

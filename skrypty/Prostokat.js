@@ -52,6 +52,20 @@ export class Prostokat {
          */
         this._katObrotu = 0;
 
+        /**
+         * Szerokosc obramowania
+         * @type {number | null}
+         * @private
+         */
+        this._obramowanieSzerokosc = null;
+
+        /**
+         * Kolor obramowania
+         * @type {string | null}
+         * @private
+         */
+        this._obramowanieKolor = null;
+
     }
 
     /**
@@ -98,7 +112,7 @@ export class Prostokat {
      * @return {Prostokat}
      */
     setKatObrotu(v) {
-        if (Math.abs(Math.abs(v) - Math.PI) < 0.0001) {
+        if (Math.abs(Math.abs(v) - Math.PI * 2) < 0.0001) {
             v = 0;
         }
         this._katObrotu = v;
@@ -114,6 +128,44 @@ export class Prostokat {
     }
 
     /**
+     * Zwraca obramowanie
+     * @returns {number | null}
+     */
+    get obramowanieSzerokosc() {
+        return this._obramowanieSzerokosc;
+    }
+
+    /**
+     * Pobiera kolor obramowania
+     * @return {string | null}
+     */
+    get obramowanieKolor() {
+        return this._obramowanieKolor;
+    }
+
+    /**
+     * Ustawia obramowanie
+     * @param {number} szerokosc
+     * @param {string} kolor
+     * @return {Prostokat}
+     */
+    setObramowanie(szerokosc, kolor) {
+        this._obramowanieSzerokosc = szerokosc;
+        this._obramowanieKolor = kolor;
+        return this;
+    }
+
+    /**
+     * Cysci obramowanie
+     * @return {Prostokat}
+     */
+    czyscObramowanie() {
+        this._obramowanieSzerokosc = null;
+        this._obramowanieKolor = null;
+        return this;
+    }
+
+    /**
      * Rysuje prostokat na kanwasie
      * @param {CanvasRenderingContext2D} ctx
      */
@@ -124,6 +176,13 @@ export class Prostokat {
         ctx.beginPath();
         ctx.translate(this.pozycja.x + this.szerokosc / 2, this.pozycja.y + this.wysokosc / 2);
         ctx.rotate(this._katObrotu);
+
+        // Obramowanie
+        if (this._obramowanieSzerokosc !== null && this._obramowanieKolor !== null) {
+            ctx.strokeStyle = this._obramowanieKolor;
+            ctx.lineWidth = this._obramowanieSzerokosc;
+            ctx.strokeRect(-this.szerokosc / 2, -this.wysokosc / 2, this.szerokosc, this.wysokosc);
+        }
 
         if (typeof this._kolor === 'string') { // Rysowanie kolorem
             ctx.rect(-this.szerokosc / 2, -this.wysokosc / 2, this.szerokosc, this.wysokosc);
