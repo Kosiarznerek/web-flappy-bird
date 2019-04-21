@@ -79,11 +79,22 @@ const pipy = [];
 
 // Po wciśnieciu spacji
 window.addEventListener('keydown', e => {
-    if (!flappyBird || e.key !== ' ') return;
+    if (e.key !== ' ') return;
+    flappyBirdPodskocz();
+});
+
+// Po tapie
+window.addEventListener('touchstart', flappyBirdPodskocz);
+
+/**
+ * Flappy podskakuje
+ */
+function flappyBirdPodskocz() {
+    if (!flappyBird) return;
     flappyBird.podskocz();
     dzwieki.skrzydla.currentTime = 0;
     dzwieki.skrzydla.play();
-});
+}
 
 // Zmiana rozmiaru
 window.addEventListener('resize', () => {
@@ -91,7 +102,7 @@ window.addEventListener('resize', () => {
     aktualizujRozmiar(
         canvas,
         new Wektor(1366, 657),
-        new Wektor(window.innerWidth, window.outerHeight)
+        new Wektor(window.innerWidth, window.innerHeight)
     );
 });
 
@@ -107,7 +118,7 @@ function setup() {
     aktualizujRozmiar(
         canvas,
         new Wektor(1366, 657),
-        new Wektor(window.innerWidth, window.outerHeight)
+        new Wektor(window.innerWidth, window.innerHeight)
     );
     ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = false;
@@ -189,13 +200,13 @@ function animate() {
                 : canvas.width,
             0
         ),
-        flappyBird.wysokosc * 3.5,
+        flappyBird.wysokosc * 3,
         grafiki.pipe.width,
         canvas.height,
-        flappyBird.wysokosc,
-        -2,
+        20,
+        -2.5,
         grafiki.pipe
-    ).setObramowanie(15, '#000000'));
+    ).setObramowanie(15, '#000'));
 
     // Aktualizuje pozycje pipów
     pipy.forEach(v => v.aktualizuj());
@@ -209,6 +220,27 @@ function animate() {
             pipy.splice(i, 1);
             i--;
         }
+
+    // Jeżeli jestem przed pipem który nie jest zaliczony -> punkt
+    pipy
+        .filter(v => !v.zaliczony && v.jestZa(flappyBird))
+        .forEach(v => {
+            v.zaliczony = true;
+            dzwieki.punkt.currentTime = 0;
+            dzwieki.punkt.play();
+            flappyBird.punkty++;
+        });
+
+    // Wyświetlam punkty gracza
+    ctx.fillStyle = '#fff';
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 3.5;
+    ctx.font = '50px FlappyBirdy';
+    ctx.textAlign = "center";
+    ctx.fillText(flappyBird.punkty.toString().padStart(3, '0'), canvas.width / 2, 80);
+    ctx.strokeText(flappyBird.punkty.toString().padStart(3, '0'), canvas.width / 2, 80);
+    ctx.fill();
+    ctx.stroke();
 
     // Ponowne załadowanie animacji
     requestAnimationFrame(animate);

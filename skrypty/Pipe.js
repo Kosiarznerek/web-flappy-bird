@@ -56,7 +56,13 @@ export class Pipe {
         /**
          * @type {number}
          */
-        this.predkosc = predkosc
+        this.predkosc = predkosc;
+
+        /**
+         * Czy punkt za pipa został już przyznany
+         * @type {boolean}
+         */
+        this.zaliczony = false;
 
     }
 
@@ -89,7 +95,7 @@ export class Pipe {
      * Pobiera kolor obramowania
      * @return {string | null}
      */
-    get obramowanieKolor(){
+    get obramowanieKolor() {
         return this._gorny.obramowanieKolor;
     }
 
@@ -97,7 +103,7 @@ export class Pipe {
      * Pobiera obramowanie
      * @return {number | null}
      */
-    get obramowanieSzerokosc(){
+    get obramowanieSzerokosc() {
         return this._gorny.obramowanieSzerokosc;
     }
 
@@ -134,6 +140,15 @@ export class Pipe {
      */
     aktualizuj() {
         this._pipy.forEach(v => v.pozycja.dodaj(new Wektor(this.predkosc)));
+    }
+
+    /**
+     * Sprawdza czy pipe znajduje się za elementem
+     * @param {Prostokat} p
+     * @return {boolean}
+     */
+    jestZa(p) {
+        return this._gorny.pozycja.x + this.szerokosc + this.obramowanieSzerokosc < p.pozycja.x;
     }
 
 }

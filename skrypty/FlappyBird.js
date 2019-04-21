@@ -46,6 +46,12 @@ export class FlappyBird extends Prostokat {
          */
         this._maxSilaWzbicia = -15;
 
+        /**
+         * Punkty gracza
+         * @type {number}
+         */
+        this.punkty = 0;
+
     }
 
     /**
