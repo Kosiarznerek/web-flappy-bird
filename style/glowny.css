@@ -1,6 +1,6 @@
 @font-face {
     font-family: FlappyBirdy;
-    src: url(../FlappyBirdy.ttf);
+    src: url('/style/FlappyBirdy.ttf');
 }
 
 body {
