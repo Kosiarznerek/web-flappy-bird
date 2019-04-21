@@ -70,6 +70,38 @@ export class Pipe {
     }
 
     /**
+     * Zwraca pozycje
+     * @return {Wektor}
+     */
+    get pozycja() {
+        return this._gorny.pozycja.klonuj();
+    }
+
+    /**
+     * Zwraca szerokosc
+     * @return {number}
+     */
+    get szerokosc() {
+        return this._gorny.szerokosc;
+    }
+
+    /**
+     * Pobiera kolor obramowania
+     * @return {string | null}
+     */
+    get obramowanieKolor(){
+        return this._gorny.obramowanieKolor;
+    }
+
+    /**
+     * Pobiera obramowanie
+     * @return {number | null}
+     */
+    get obramowanieSzerokosc(){
+        return this._gorny.obramowanieSzerokosc;
+    }
+
+    /**
      * Ustawia obramowanie
      * @param {number} szerkosc
      * @param {string} kolor

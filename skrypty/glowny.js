@@ -138,17 +138,6 @@ function setup() {
         grafiki.flappyBird.height
     ).setGrafika(grafiki.flappyBird);
 
-    // Tworze pipy
-    pipy.push(new Pipe(
-        new Wektor(100, 0),
-        flappyBird.wysokosc * 2.5,
-        grafiki.pipe.width,
-        canvas.height,
-        flappyBird.wysokosc,
-        0,
-        grafiki.pipe
-    ).setObramowanie(15, '#000000'));
-
     // Uruchonienie animacji
     animate();
 
@@ -180,10 +169,11 @@ function animate() {
     chmurki.forEach(v => v.rysuj(ctx));
 
     // Chmurki po a ekranem są wywalane
-    for (let i = 0; i < chmurki.length; i++) if (chmurki[i].pozycja.x + chmurki[i].szerokosc < 0) {
-        chmurki.splice(i, 1);
-        i--;
-    }
+    for (let i = 0; i < chmurki.length; i++)
+        if (chmurki[i].pozycja.x + chmurki[i].szerokosc + chmurki[i].obramowanieSzerokosc < 0) {
+            chmurki.splice(i, 1);
+            i--;
+        }
 
     // Rysuje gracza
     flappyBird.rysuj(ctx);
@@ -191,11 +181,34 @@ function animate() {
     // Aktualizuje pozycje gracza
     flappyBird.aktualizuj();
 
-    // Aktualizuje pozycuje pipów
+    // Tworze pipy
+    while (pipy.length < 3) pipy.push(new Pipe(
+        new Wektor(
+            pipy[pipy.length - 1]
+                ? pipy[pipy.length - 1].pozycja.x + pipy[pipy.length - 1].szerokosc + canvas.width / 3
+                : canvas.width,
+            0
+        ),
+        flappyBird.wysokosc * 3.5,
+        grafiki.pipe.width,
+        canvas.height,
+        flappyBird.wysokosc,
+        -2,
+        grafiki.pipe
+    ).setObramowanie(15, '#000000'));
+
+    // Aktualizuje pozycje pipów
     pipy.forEach(v => v.aktualizuj());
 
     // Rysuje pipy
     pipy.forEach(v => v.rysuj(ctx));
+
+    // Pipy po a ekranem są wywalane
+    for (let i = 0; i < pipy.length; i++)
+        if (pipy[i].pozycja.x + pipy[i].szerokosc + pipy[i].obramowanieSzerokosc < 0) {
+            pipy.splice(i, 1);
+            i--;
+        }
 
     // Ponowne załadowanie animacji
     requestAnimationFrame(animate);
